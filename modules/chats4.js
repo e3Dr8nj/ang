@@ -19,7 +19,8 @@ chats.text_channels={};
 chats.voice_channels={};
 chats.owners={};
 exports.e={
-  main_voice_id:'733084986093076530',
+  afk_channel_id:'476431736813912068'
+  ,main_voice_id:'733084986093076530',
   free_chat_category_id:'729784711710376007'
   ,create_voice_id:'733084986093076530'
   ,create_voice_name:'создать войс'
@@ -96,11 +97,7 @@ function Ch(){
 //_________________________________________BOOTS_PART___________________________________________________
 module.exports.boots = {}; 
 module.exports.boots.someBoot2={on:true,run:async(client)=>{try{
-//
-module.exports.voice_channels={};
-module.exports.text_channels={};
-module.exports.owners={};
-  //
+
  a.SRV= await client.guilds.cache.get(client.SERVER_ID);
  a.LCH = await client.guilds.cache.get(client.SERVER_ID).channels.cache.find(ch=>ch.name=='logbot');
   
@@ -114,7 +111,7 @@ module.exports.voice_channels={};
 module.exports.text_channels={};
 module.exports.owners={};
   //
-  await a.LCH.messages.fetch({limit:100}).catch(console.error);
+  //await a.LCH.messages.fetch({limit:100}).catch(console.error);
   let msg_arr= await a.LCH.messages.fetch({limit:10}).then(messages => {
              let msgs =  messages.filter(m=>m.content.indexOf('chatVR')!=-1);// return msgs.first().content.match(/\d{3,}/)[0];
               return msgs;
@@ -122,16 +119,17 @@ module.exports.owners={};
   //
   // let text_channels_arr= await client.guilds.cache.get(client.SERVER_ID).channels.cache.filter(ch=>ch.type=="text"&&ch.parent&&ch.parent.id==exports.e.voice_category_id);
    let obj;
-  msg_arr=msg_arr.array().reverse();
+  msg_arr=msg_arr.array();
    msg_arr.map(ch=>{
  console.log(ch.content);
      if(ch.content.indexOf('{')==-1||ch.content.indexOf('}')==-1) return;
      let data1 = JSON.parse(ch.content.trim());
      let data2 = JSON.parse(ch.content.trim());
-     console.log(data1);
+     //console.log(data1);
      let msg_id=ch.id;
     // ch.id=data1.text_id;
      let text_id=data1.text_id;
+     if(exports.text_channels[text_id]) return  console.log('has');
      if(data1){
       let channel_id=data1.id; 
        obj=data1;
