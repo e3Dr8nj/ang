@@ -10,10 +10,10 @@ setInterval(() => {
   //http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 280000);
 //---
-//___
+//___{ partials: ['USER', 'MESSAGE', 'CHANNEL', 'REACTION'] }
 
 const Discord = require("discord.js");
-const client = new Discord.Client({ partials: ['USER', 'MESSAGE', 'CHANNEL', 'REACTION'] });
+const client = new Discord.Client();
 client.lang=1;
 //client.SERVER_ID='301063859702071316';
 client.SERVER_ID='476431736813912064';
